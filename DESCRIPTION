@@ -1,0 +1,15 @@
+Package: beeboler
+Type: Package
+Title: R API for https://beebole-apps.com
+Version: 0.1.0
+Author: Andrea Melloncelli (Akirocode)
+Maintainer: andrea.melloncelli@gmail.com
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: GNU GENERAL PUBLIC LICENSE Version 2
+Encoding: UTF-8
+LazyData: true
+Depends:
+	jsonlite,
+	httr
+Suggests: testthat
