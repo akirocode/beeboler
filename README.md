@@ -7,4 +7,4 @@ R API for https://beebole-apps.com
 
 Specifications: https://beebole.com/timesheet-api/
 
-The package still don't fully cover beebole API.
+The package still does not fully cover beebole API.
