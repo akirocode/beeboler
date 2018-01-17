@@ -109,11 +109,30 @@ groupGetFake <- ApiFake(request = '{
 }
 ')
 
+# List Groups Assigned to a Person
+
+personGroupsFake <- ApiFake(request = '{
+	"service" : "person.groups",
+	"id" : 78
+}'
+														, response = '{
+	"status":"ok",
+	"groups":[
+		{
+			"id":4787,
+			"name":"US",
+			"groups":{"count":4}
+		}
+		]
+}')
+
 # apiFakes ----------------------------------------------------------------
 
 apiFakes <- list(companyFake2
 								 , personGetFake
-								 , personListFake)
+								 , personListFake
+								 , groupGetFake
+								 , personGroupsFake)
 
 # conn --------------------------------------------------------------------
 
@@ -179,5 +198,17 @@ test_that("person_get test", {
 })
 
 # group_tests -------------------------------------------------------------
+
+test_that("person_groups test", {
+
+	with_mock(
+		`beeboler::beeboleAppsRequest` = beeboleAppsRequestFake
+		, groups <- person_groups(conn, 78))
+
+	expect_equal(object     = groups$groups$id
+							 , expected = personGroupsFake$responseObj$groups$id)
+	# expect_equal(object     = groups
+	# 						 , expected = personGroupsFake$responseObj)
+})
 
 

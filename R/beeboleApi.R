@@ -31,23 +31,36 @@ company_get <- function(conn, company_id) {
 	return(out)
 }
 
-## this fun should be called person_list in consistency with beebole-apis
-person_get <- function(conn, company_id) {
+# api_function
+person_list <- function(conn, company_id) {
 	body <- list(
 		"service" = "person.list",
 		"company" = list("id" = company_id )
 	)
 	out <- api_call(conn, body)
+	out
+}
+
+# RStyle function
+person_get <- function(conn, company_id) {
+	out <- person_list(conn, company_id)
 	subject <- as.list(out$people$id)
 	names(subject) <- out$people$name
 	subject
 }
-person_group_get <- function(conn, person_id) {
+
+# api_function
+person_groups <- function(conn, person_id) {
 	body <- list(
 		"service" = "person.groups",
-		"id" = 78
+		"id" = person_id
 	)
 	out <- api_call(conn, body)
+	out
+}
+# RStyle_function
+person_group_get <- function(conn, person_id) {
+	person_groups(conn, person_id)
 	subject <- as.list(out$groups$id)
 	names(subject) <- out$groups$name
 	subject
