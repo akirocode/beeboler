@@ -8,7 +8,6 @@ warnings_are_errors: false
 # install apt pkgs
 before_install:
   - sudo apt-get update -q
-  - sudo apt-get install -y sqlite
 # coverage
 r_packages:
   - covr
